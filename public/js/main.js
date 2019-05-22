@@ -29,10 +29,11 @@ socket.on('join_room_response', function(payload){
         alert(payload.message);
         return;
     }
-    $('#message').append('<p>New user joined the room: '+payload.username+'</p>');
+    $('#messages').append('<p>New user joined the room: '+payload.username+'</p>');
 
 });
 socket.on('send_message_response', function(payload){
+    console.log('Send message function')
     if(payload.result == 'fail'){
         alert(payload.message);
         return;

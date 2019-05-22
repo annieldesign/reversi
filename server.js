@@ -145,7 +145,7 @@ or
 */
 socket.on('send_message', function(payload){
 	log('server received a command','send_message', payload);
-	if(('undefined' === typeof payload) || !payload){
+	if(('undefined' == typeof payload) || !payload){
 		var error_message = 'send_message had no payload, command aborted';
 		log(error_message);
 		socket.emit('send_message_response',  {
@@ -155,7 +155,7 @@ socket.on('send_message', function(payload){
 		return;
 	} 
 	var room = payload.room;
-	if(('underfined' === typeof room) || !room){
+	if(('underfined' == typeof room) || !room){
 		var error_message = 'send_message didn\'t specify a room, command aborted';
 		log(error_message);
 		socket.emit('send_message_response',  {
@@ -165,7 +165,7 @@ socket.on('send_message', function(payload){
 		return;
 	}
 	var username = payload.username;
-	if(('undefined' === typeof username) || !username){
+	if(('undefined' == typeof username) || !username){
 		var error_message = 'send_message didn\'t specify a username, command aborted';
 		log(error_message);
 		socket.emit('send_message_response',  {
@@ -175,7 +175,7 @@ socket.on('send_message', function(payload){
 		return;
 	}
 	var message = payload.message;
-	if(('undefined' === typeof message) || !message){
+	if(('undefined' == typeof message) || !message){
 		var error_message = 'send_message didn\'t specify a message, command aborted';
 		log(error_message);
 		socket.emit('send_message_response',  {
@@ -194,4 +194,10 @@ socket.on('send_message', function(payload){
 	log('Message sent to room' +room+ ' by ' + username);
 	
 });
+
+
+
+
+
+
 });
