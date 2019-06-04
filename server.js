@@ -88,9 +88,9 @@ socket.on('join_room', function(payload){
 	}
 	/* Check that the payload has a room to join */
 	var room = payload.room;
-	if(('undenined' === typeof room) || !room){
+	if(('undefined' === typeof room) || !room){
 		var error_message = 'join_room didn\'t specify a room, command aborted';
-		log(error_messge);
+		log(error_message);
 		socket.emit('join_room_response',	{
 								result: 'fail',
 								message: error_message
@@ -100,7 +100,7 @@ socket.on('join_room', function(payload){
 	/*Check that a username has been provided*/
 	var username = payload.username;
 	if(('undefined' === typeof username) || !username){
-		var error_message = 'join_room didn\'t specify a username command aborted';
+		var error_message = 'join_room didn\'t specify a username, command aborted';
 		log(error_message);
 		socket.emit('join_room_response', {
 								result:'fail',
@@ -130,6 +130,7 @@ socket.on('join_room', function(payload){
 	};
 	io.in(room).emit('join_room_response', success_data);
 
+	/*Tell the person who is joining who else is in the room */
 	for(var socket_in_room in roomObject.sockets){
 		var success_data = {
 							result:'success',
@@ -139,10 +140,15 @@ socket.on('join_room', function(payload){
 							membership: numClients	
 		};
 		socket.emit('join_room_response', success_data);
-	}
+	};
 	log('join_room success');
+
+	if(room !== 'lobby'){
+		send_game_update(socket,room,'initial update');
+	}
 	});
 
+	/* When a web page disconnects alert everyone in the same room */
 	socket.on('disconnect', function(){
 		log('Client disconnected '+JSON.stringify(players[socket.id]));
 		if('undefined' !== typeof players[socket.id] && players[socket.id]){
@@ -316,7 +322,7 @@ socket.on('invite', function(payload){
 					result: 'success',
 					socket_id: socket.id
 					};
-	socket.to(requested_user).emit('invited', success_data)
+	socket.to(requested_user).emit('invited', success_data);
 	log('invite successful');
 	
 });
@@ -406,7 +412,7 @@ socket.on('uninvite', function(payload){
 					result: 'success',
 					socket_id: socket.id
 					};
-	socket.to(requested_user).emit('uninvited', success_data)
+	socket.to(requested_user).emit('uninvited', success_data);
 	log('uninvite successful');
 	
 });
@@ -492,21 +498,72 @@ socket.on('game_start', function(payload){
 					socket_id: socket.id,
 					game_id: game_id
 					};
-	socket.to(requested_user).emit('game_start_response', success_data)
+	socket.to(requested_user).emit('game_start_response', success_data);
 	log('game_start successful');
 	
 });
 
 
 
-
-
-
-
-
-
-
-
-
-
 });
+
+/**********************/
+/* Code related to the game state */
+
+var games =[];
+
+function create_new_game(){
+	var new_game = {};
+	new_game.player_white = {};
+	new_game.player_black = {};
+	new_game.player_white.socket = '';
+	new_game.player_white.username = '';
+	new_game.player_black.socket = '';
+	new_game.player_black.username = '';
+
+	var d = new Date();
+	new_game.last_move_time = d.getTime();
+	new_game.whose_turn = 'white';
+	new_game.board = [
+						[' ',' ',' ',' ',' ',' ',' ',' '],
+						[' ',' ',' ',' ',' ',' ',' ',' '],
+						[' ',' ',' ',' ',' ',' ',' ',' '],
+						[' ',' ',' ','w','b',' ',' ',' '],
+						[' ',' ',' ','b','w',' ',' ',' '],
+						[' ',' ',' ',' ',' ',' ',' ',' '],
+						[' ',' ',' ',' ',' ',' ',' ',' '],
+						[' ',' ',' ',' ',' ',' ',' ',' ']
+	];
+	return new_game;
+
+}
+
+
+function send_game_update(socket, game_id, message){
+
+	 /* Check to see if a game with game_id already exists*/
+	 if(('undefined' === typeof games[game_id]) || !games[game_id]){
+			/* No game exists, so make one*/
+			console.log('No game exist. Creating '+game_id+' for '+socket.id);
+			games[game_id] = create_new_game();
+
+	 }
+
+	 /* Make sure that only 2 people are in the game room */
+
+	 /* Assign this socket a color */
+
+	 /* Send game update */
+	 var success_data = {
+						 result: 'success',
+						 game: games[game_id],
+						 message: message,
+						 game_id: game_id
+	 };
+
+	 io.in(game_id).emit('game_update', success_data);
+
+	 /* Check to see if the game is over */
+
+}
+
