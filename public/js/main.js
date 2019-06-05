@@ -345,8 +345,8 @@ socket.on ('game_update', function(payload){
     
     }     
 
-    /*
-    $('#my_color').html('<h3 id="my_color">I am '+my_color+'</h3>');*/
+    
+    $('#my_color').html('<h3 id="my_color">I am '+my_color+'</h3>');
 
 
 
