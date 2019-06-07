@@ -20,6 +20,7 @@
           <div class='col'>
               <h2>Lobby</h2>
           </div>
+        </div>    
           <div class='row align-items-end' id='players'>
               <div class='col-9 text-left'>
                   <h3>Players</h3>
@@ -34,47 +35,24 @@
           <div class='col text-left'>
               <h3>Messages</h3>
               <form class='form-inline' onsubmit='send_message(); return false;'>
-                  <label for='send_message_holder' class='col-form-label sr-only'>Enter your chat message</label> 
+                  <label for='send_message_holder' class='col-form-label sr-only'>Enter your chat message</label>
                   <input class='form-control mx-auto w-75' type='text' value='' id='send_message_holder' placeholder='Enter your chat message' autocomplete='off'/>
                   <button type='submit' class='btn btn-default btn-primary'>Send</button>
-              </form>
-              </div>
+                
+            </form>
+             
           </div>
          
       </div>   
       <div class='row'>
         <div class='col text-left'>
             <div id='messages'>
-
             </div>
-                  
+            
+               
+          
         </div>
        
-<!--   </div>
-      <div class='row'>
-          <div class='col text-left'>
-              <h3>Messages</h3>
-              <div id='messages'>
-              </div>
-          </div>
-         
-      </div>   
-      <div class='row'>
-        <div class='col'>
-            <form onsubmit='send_message(); return false;'>
-                <div class ='form-group'>
-                  <label for='send_message_holder' class='col-form-label sr-only'>Enter your chat message</label>
-                  <input class='form-control' type='text' value='' id='send_message_holder' placeholder='Enter your chat message' autocomplete='off'/>
-                  
-                </div>
-                <button type='submit' class='btn btn-default btn-primary'>Send</button>
-               
-            
-            </form>
-        </div>
-       -->
-
-
     </div>   
     </div>
     
@@ -87,9 +65,7 @@
     crossorigin='anonymous'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js' integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1' crossorigin='anonymous'></script>
     <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js' integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM' crossorigin='anonymous'></script>
-
     <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js' integrity='sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=' crossorigin='anonymous'></script>
-
     <script src='js/main.js'></script>
   </body>
 </html>
