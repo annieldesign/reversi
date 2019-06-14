@@ -461,9 +461,9 @@ socket.on('game_start', function(payload){
 	}
 	var requested_user = payload.requested_user;
 	if(('undefined' === typeof requested_user) || !requested_user){
-		var error_message = 'game_start didn\'t specify a requested_user, comand aborted';
+		var error_message = 'uninvite didn\'t specify a requested_user, comand aborted';
 		log(error_message);
-		socket.emit('game_start_response',  {
+		socket.emit('uninvite_response',  {
 										result: 'fail',
 										message: error_message
 		});
@@ -500,10 +500,11 @@ socket.on('game_start', function(payload){
 					socket_id: socket.id,
 					game_id: game_id
 					};
-	socket.to(requested_user).emit('game_start_response', success_data)
+	socket.to(requested_user).emit('game_start_response', success_data);
 	log('game_start successful');
 	
 });
+
 
 /* play_token command */
 /* payload:
