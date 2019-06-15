@@ -989,8 +989,9 @@ function send_game_update(socket, game_id, message) {
         game_id: game_id
       };
 
-      io.in(game_id).emit('game_over', success_data);
-
+			io.in(game_id).emit('game_over', success_data);
+			
+		
       setTimeout(function(id){
         return function(){
           delete game[id];

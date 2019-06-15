@@ -9,8 +9,22 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
   <style>
+     
+      h2{
+        color:rgb(170, 73, 73);
+        font-weight: 400;
+      }
       #header-row {
-        background-image: url("assets/images/background.png");
+        padding: 20px;
+        background-image: url('assets/images/background1.png');
+        background-blend-mode:overlay;
+       
+      }
+      p{
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: left;
+        padding: 10px;
+
       }
   </style>
   </head>
@@ -23,30 +37,43 @@
           </div>
     </div>
        
-    <div class="row">
-        <div class="col">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt fugiat praesentium eum eligendi quas quae, veniam commodi at quo est temporibus repellat consequatur esse vero voluptatibus, quam culpa hic unde.</p>
-        </div>
-    </div>
-      <div class="row">
-          <div class="col">
-              <a href="index.html" class=btn btn-lg btn-info>Home</a>
-          </div>
-      </div>
-      <div class="row">
-          <div class="col">
-              <a href="about.html" class="btn btn-lg btn-info">About</a>
-          </div>
-          <div class="col">
-              <a href="https://en.wikipedia.org/wiki/Reversi" class="btn btn-lg btn-info">Rules</a>
-          </div>
-      </div>
+  </div>
+  <div class="row">
+     
+  </div>
   
+ 
+
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="https://en.wikipedia.org/wiki/Reversi">Rules</a></li>
+          <li class="breadcrumb-item active" aria-current="page">About</li>
+        </ol>
+      </nav>
       
 
-    </div>
-    
+</div>
 
+    <div class="row">
+        <div class="col text-center">
+            <p>Taking the aquariums around the world as an inspiration, the Reversi fish tank is using the basic Reversi rule, where player with the fish avatar gets to move first. 
+              
+
+            On your turn, you place one piece on the board with your sea creature facing up. You must place the piece so that an opponent's piece, or a row of opponent's pieces, is flanked by your pieces.
+
+
+            Play against the computer, or challenge your friends.</p>
+        </div>
+      </div>   
+     
+        <div class="row fixed-bottom">
+            <div class="col">
+                <img class="img-fluid" src="assets/images/bottom-splash.png" alt="Reversi logo 2"/>
+            </div>
+        </div>
+    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
